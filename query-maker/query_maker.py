@@ -27,7 +27,7 @@ class GPTQueryMaker():
         formatted_prompt = self.prompt.format(crime_facts=crime_facts)
         
         
-        client = OpenAI(api_key="sk-proj-gT38NxUOK3pxPWZrKCyOT3BlbkFJ61cD1mzQxmHdE0L5Voki")
+        client = OpenAI(api_key="your-api-key")
         response = client.chat.completions.create(
             messages=[
                 {
@@ -60,7 +60,7 @@ class GPTQueryMaker():
     
 if __name__ == "__main__":
     import os
-    os.environ["OPEN_AI_API_KEY"] = "sk-proj-gT38NxUOK3pxPWZrKCyOT3BlbkFJ61cD1mzQxmHdE0L5Voki"
+    os.environ["OPEN_AI_API_KEY"] = "your-api-key"
     
     from datasets import load_from_disk, DatasetDict
 
