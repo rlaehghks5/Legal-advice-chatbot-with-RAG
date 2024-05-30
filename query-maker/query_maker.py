@@ -6,7 +6,6 @@ from datasets import Dataset
 from openai import OpenAI
 
 
-
 class GPTQueryMaker():
     def __init__(self, prompt, model="gpt-3.5-turbo"):
         self.prompt = prompt
@@ -28,7 +27,7 @@ class GPTQueryMaker():
         formatted_prompt = self.prompt.format(crime_facts=crime_facts)
         
         
-        client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+        client = OpenAI(api_key="your-api-key")
         response = client.chat.completions.create(
             messages=[
                 {
@@ -60,10 +59,18 @@ class GPTQueryMaker():
     
     
 if __name__ == "__main__":
+    import os
+    os.environ["OPEN_AI_API_KEY"] = "your-api-key"
     
     from datasets import load_from_disk, DatasetDict
 
+    
+    
     ds = load_from_disk("../dataset/")['test']
+    ds1 = ds.select(range(500))
+    ds2 = ds.select(range(500, 1000))
+    ds3 = ds.select(range(1000, 1500))
+    ds4 = ds.select(range(1500, 2137))
     
     prompt = """당신은 복잡한 범죄 사실들을 마치 일반인이 얘기하듯 자연스러운 문장으로 풀어쓰는 한국어 챗봇입니다.
     제가 범죄사실을 말하면, 당신은 실제 변호사에게 물어보듯 해당 범죄사실을 자연스러운 문장으로 풀어쓰세요. 
@@ -78,5 +85,9 @@ if __name__ == "__main__":
     {crime_facts}"""
 
     query_maker = GPTQueryMaker(prompt=prompt)
-    ds_with_query = query_maker.generate_querys_from_datasets(ds, new_col_name='query', from_col_name="facts")
-    ds_with_query
+    
+    print("query making start!")
+    for ds_part in [ds1, ds2, ds3, ds4]:
+        ds_part_with_query = query_maker.generate_querys_from_datasets(ds_part, new_col_name='query', from_col_name="facts")
+        ds_part_with_query.save_to_disk(f'./{ds_part}/')
+        print(f"========== {ds_part} query generated ==========")

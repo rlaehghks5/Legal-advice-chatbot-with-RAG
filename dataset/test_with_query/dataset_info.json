@@ -1,0 +1,81 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "statute_classification_plus",
+  "dataset_name": "lbox_open",
+  "dataset_size": 26534576,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/lbox/lbox_open@01e908333a32a9405e5c45726e9b67baccd655b6/statute_classification_plus/train/0000.parquet": {
+      "num_bytes": 6886480,
+      "checksum": null
+    },
+    "hf://datasets/lbox/lbox_open@01e908333a32a9405e5c45726e9b67baccd655b6/statute_classification_plus/validation/0000.parquet": {
+      "num_bytes": 1329223,
+      "checksum": null
+    },
+    "hf://datasets/lbox/lbox_open@01e908333a32a9405e5c45726e9b67baccd655b6/statute_classification_plus/test/0000.parquet": {
+      "num_bytes": 1265644,
+      "checksum": null
+    }
+  },
+  "download_size": 9481347,
+  "features": {
+    "id": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "casetype": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "casename": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "statutes": {
+      "feature": {
+        "dtype": "string",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "facts": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "query": {
+      "dtype": "string",
+      "_type": "Value"
+    }
+  },
+  "homepage": "lbox.kr",
+  "license": "",
+  "size_in_bytes": 36015923,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 19601977,
+      "num_examples": 13317,
+      "dataset_name": "lbox_open"
+    },
+    "validation": {
+      "name": "validation",
+      "num_bytes": 3537466,
+      "num_examples": 2376,
+      "dataset_name": "lbox_open"
+    },
+    "test": {
+      "name": "test",
+      "num_bytes": 3395133,
+      "num_examples": 2137,
+      "dataset_name": "lbox_open"
+    }
+  },
+  "version": {
+    "version_str": "0.2.0",
+    "major": 0,
+    "minor": 2,
+    "patch": 0
+  }
+}
